@@ -10,6 +10,7 @@ added scheduler for batch job
 followed the api spec, but must add pagination if assuming data is large,
 added index to the table assuming data is large
 added liquibase for db migration management
+actuator and prometheus endpoint is shown for application monitoring or using monitoring tools to check this endpoints
 can access h2 console and swagger api doc, http://localhost:8080/api/swagger-ui/index.html, http://localhost:8080/api/h2-console/
 temporary database on h2 db
 added dockerfile for readyness on containerization
