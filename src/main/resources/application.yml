@@ -1,0 +1,53 @@
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /api
+spring:
+  application:
+    name: cci
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: ${DB_DIALECT:org.hibernate.dialect.H2Dialect}
+        default_schema: ${DB_SCHEMA:}
+  datasource:
+    url: ${DB_URL:jdbc:h2:mem:testdb;}
+    driverClassName: ${DB_DRIVER:org.h2.Driver}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:sa}
+    hikari:
+      auto-commit: false
+  h2:
+    console.enabled: true
+  liquibase:
+    enabled: true
+    url: ${DB_URL:jdbc:h2:mem:testdb}
+    user: ${DB_LIQB_USERNAME:sa}
+    password: ${DB_LIQB_PASSWORD:sa}
+    default-schema: ${DB_SCHEMA:}
+    liquibase-schema: ${DB_SCHEMA:}
+    change-log: db/changelog/db.changelog-master.xml
+cci:
+  scheduler:
+    task: 0 0/1 * * * *
+logging:
+  level:
+    root: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] [%X{transactionId:-}] %-5level %logger{36}:%L - %m%n"
+
+# Actuator - Enable All including Prometheus Metrics
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "health"
+          - "prometheus"
+  endpoint:
+    health:
+      show-details: always
