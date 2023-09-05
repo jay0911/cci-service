@@ -13,8 +13,8 @@ public class OpenAPIConfig {
     public OpenAPI openAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("UAAS Service API")
-                        .description("User Authentication and Authorization Service")
+                        .title("CCI Service API")
+                        .description("CCI exam Service")
                         .version("v1.0"))
                 .externalDocs(new ExternalDocumentation()
                         .description("LLD")
